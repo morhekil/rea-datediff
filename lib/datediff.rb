@@ -39,10 +39,10 @@ module Datediff
     # February and it's changing number of days at the end of the year,
     # thus not affecting days numbers of other months.
     #
-    # Using a linear regression we find the function as (306*month + 5.2)/10,
+    # Using a linear regression we find the function as (30.6*month + 0.026),
     # where month is 0..11, 0 being March and 11 - February
     adjusted_month = (month + 9) % 12
-    days = ((306*adjusted_month + 5.2)/10).to_i
+    days = (30.6*adjusted_month + 0.526).to_i
 
     # Next - calculate the number of days until the given year, adding it to the number
     # of days we've got from the months.
@@ -72,14 +72,14 @@ module Datediff
 
     # Leftover days are now a basis for the month calculation. It is a direct reversion
     # of the same calculations in date_to_days
-    adjusted_month = ((days_left*10 + 5.2) / 306).to_i
+    adjusted_month = ((days_left + 0.526) / 30.6).to_i
     # If we've got more than 12 months - adjust the year accordingly
     year += ((adjusted_month + 2) / 12).to_i
     # And calculate the final month value
     month = (adjusted_month + 2) % 12 + 1
 
     # And the last step - get the day of the month
-    day = days_left - ((adjusted_month * 306 + 5.2) / 10).to_i + 1
+    day = days_left - (adjusted_month * 30.6 + 0.526).to_i + 1
 
     [year, month, day]
   end
