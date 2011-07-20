@@ -6,7 +6,9 @@ module Datediff
     days2 = date_to_days(*split_date(date2))
     diff = days2 - days1
 
-    [date1, date2, diff]
+    diff >= 0 ?
+      [date1, date2, diff] :
+      [date2, date1, -diff]
   end
 
   protected
