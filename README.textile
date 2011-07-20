@@ -1,0 +1,44 @@
+h1. Datediff
+
+Proof-of-concept implementation of the calculation of difference between two
+given dates.
+
+h2. Setup
+
+Datediff does not have any runtime dependencies, and only require RSpec if you
+want to run the tests.
+
+h2. Usage
+
+Datediff accepts it's input on STDIN in the format 'DD MM YYYY, DD MM YYYY':
+
+<pre>
+% echo "05 06 2011, 20 06 2011" | ./datediff.rb
+05 06 2011, 20 06 2011, 15
+</pre>
+
+It can also accept the file, parsing it line-by-line and processing each line as
+a separate input:
+
+<pre>
+% ./datediff.rb < spec/data/tests.txt
+05 06 2011, 20 06 2011, 15
+05 06 2011, 20 12 2011, 198
+30 05 1993, 20 12 2011, 6778
+30 05 1993, 20 12 2011, 6778
+20 12 2011, 20 12 2011, 0
+31 12 2001, 01 01 2002, 1
+28 02 2001, 01 03 2001, 1
+</pre>
+
+h2. Algorithm and constraints
+
+Algorithm does not depends on any specific year constraints, and is valid
+throughout the whole Gregorian calendar, basically starting with year 1582. The
+period given in the task description (1900..2010) is also perfectly valid, of
+course.
+
+Details of the algorithm are described in the comments of lib/datediff.rb,
+and should be pretty straightforward. The regression analysis mentioned in
+the months calculation as available in the project as regression_analysis.xls
+file.
