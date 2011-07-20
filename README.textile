@@ -39,6 +39,6 @@ period given in the task description (1900..2010) is also perfectly valid, of
 course.
 
 Details of the algorithm are described in the comments of lib/datediff.rb,
-and should be pretty straightforward. The regression analysis mentioned in
+i.e. methods date_to_days and days_to_date. The regression analysis mentioned in
 the months calculation as available in the project as regression_analysis.xls
 file.
